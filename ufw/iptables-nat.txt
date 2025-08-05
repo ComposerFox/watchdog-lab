@@ -1,0 +1,23 @@
+Chain PREROUTING (policy ACCEPT 0 packets, 0 bytes)
+num   pkts bytes target     prot opt in     out     source               destination         
+1     5030  355K DOCKER     all  --  any    any     anywhere             anywhere             ADDRTYPE match dst-type LOCAL
+
+Chain INPUT (policy ACCEPT 0 packets, 0 bytes)
+num   pkts bytes target     prot opt in     out     source               destination         
+
+Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 DOCKER     all  --  any    any     anywhere            !127.0.0.0/8          ADDRTYPE match dst-type LOCAL
+
+Chain POSTROUTING (policy ACCEPT 2414 packets, 192K bytes)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 MASQUERADE  all  --  any    !docker0  172.17.0.0/16        anywhere            
+2      528 79705 MASQUERADE  all  --  any    !br-b844676869ba  172.19.0.0/16        anywhere            
+3        0     0 MASQUERADE  all  --  any    !br-52c2edb37892  172.18.0.0/16        anywhere            
+4      403  146K MASQUERADE  all  --  any    enp0s31f6  10.13.13.0/24        anywhere            
+
+Chain DOCKER (2 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 RETURN     all  --  docker0 any     anywhere             anywhere            
+2     1751  116K RETURN     all  --  br-b844676869ba any     anywhere             anywhere            
+3        0     0 RETURN     all  --  br-52c2edb37892 any     anywhere             anywhere            

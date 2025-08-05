@@ -1,0 +1,18 @@
+Status: active
+Logging: on (low)
+Default: deny (incoming), allow (outgoing), allow (routed)
+New profiles: skip
+
+To                         Action      From
+--                         ------      ----
+51820/udp                  ALLOW IN    Anywhere                  
+22/tcp                     ALLOW IN    192.168.0.0/24            
+22/tcp                     ALLOW IN    10.13.13.0/24             
+80/tcp                     ALLOW IN    192.168.0.0/24            
+53/udp                     ALLOW IN    192.168.0.0/24            
+80/tcp                     ALLOW IN    10.13.13.0/24             
+53/udp                     ALLOW IN    10.13.13.0/24             
+192.168.0.0/24 on wg0      ALLOW IN    Anywhere                  
+
+192.168.0.0/24             ALLOW OUT   Anywhere on wg0           
+
