@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  suricata:
+    image: jasonish/suricata:latest
+    container_name: suricata
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    volumes:
+      - ./logs:/var/log/suricata
+      - ./etc:/etc/suricata
+    command: -i enp0s31f6
+    restart: unless-stopped 
